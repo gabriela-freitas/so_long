@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gafreita <gafreita@student.42.fr>          +#+  +:+       +#+         #
+#    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2022/06/25 20:53:39 by gafreita         ###   ########.fr        #
+#    Updated: 2022/06/26 17:20:08 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,25 @@ OBJS = $(SRCS:%.c=%.o)
 CCFLAGS = gcc -Wall -Wextra -Werror -g
 #directories with .a
 LIBFT_LIB_DIR = LIBFT/
-MLX_LIB_DIR = /usr/local/lib/
 #directories with .h
 LIBFT_INCLUDE = -ILIBFT/include
-MLX_INCLUDE = -I/usr/local/include/mlx.h
 
-MLX_MAC_FLAGS = -L$(MLX_LIB_DIR) -lmlx -framework OpenGL -framework AppKit
+UNAME = $(shell uname)
+
+LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -L$(LMLX) -L$(LIBFT_DIR) -lft
+
+ifeq ($(UNAME), Darwin)
+	# mac
+	CC = gcc
+	LFLAGS = -L$(MLX_DIR) -lmlx -L$(MLX_DIR) -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft
+else ifeq ($(UNAME), FreeBSD)
+	# FreeBSD
+	CC = clang
+else
+	#Linux and others...
+	CC	= gcc
+	LFLAGS += -lbsd
+endif
 
 COLOUR_GREEN=\033[7;1;32m
 COLOUR_END=\033[0m
@@ -33,7 +46,7 @@ COLOUR_YELLOW=\033[7;1;33m
 
 
 $(NAME): $(OBJS) | libft
-	@$(CC) $(^) -L$(LIBFT_LIB_DIR) -lft $(MLX_MAC_FLAGS) -o $(@)
+	@$(CC) $(^) -L$(LIBFT_LIB_DIR) -lft $(MLX_FLAGS) -o $(@)
 	@echo "$(COLOUR_GREEN) >>> SO_LONG OK <<< $(COLOUR_END)"
 
 submodule:
@@ -45,14 +58,14 @@ all: $(NAME) submodule
 	@$(CC) $(LIBFT_INCLUDE) $(MLX_INCLUDE) -c $(^) -o $(@)
 
 libft:
-	@make -C $(LIBFT_LIB_DIR)
+	@make -s -C $(LIBFT_LIB_DIR)
 
 clean:
-	@make clean -C $(LIBFT_LIB_DIR)
+	@make clean -s -C $(LIBFT_LIB_DIR)
 	@rm -f $(OBJS)
 
 fclean: clean
-	@make fclean -C $(LIBFT_LIB_DIR)
+	@make fclean -s -C $(LIBFT_LIB_DIR)
 	@rm -f $(NAME)
 	@echo "$(COLOUR_YELLOW) SO_LONG CLEANED $(COLOUR_END)"
 
