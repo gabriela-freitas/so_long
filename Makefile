@@ -6,9 +6,11 @@
 #    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2022/06/26 17:20:08 by gafreita         ###   ########.fr        #
+#    Updated: 2022/06/30 15:15:14 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+#+++++++++ WORKS ON LINUX +++++++++++++ #
 
 NAME = so_long
 SRCS = main.c
@@ -17,33 +19,19 @@ OBJS = $(SRCS:%.c=%.o)
 CCFLAGS = gcc -Wall -Wextra -Werror -g
 #directories with .a
 LIBFT_LIB_DIR = LIBFT/
+MLX_LIB_DIR = mlx_linux/
 #directories with .h
 LIBFT_INCLUDE = -ILIBFT/include
-
-UNAME = $(shell uname)
-
-LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -L$(LMLX) -L$(LIBFT_DIR) -lft
-
-ifeq ($(UNAME), Darwin)
-	# mac
-	CC = gcc
-	LFLAGS = -L$(MLX_DIR) -lmlx -L$(MLX_DIR) -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft
-else ifeq ($(UNAME), FreeBSD)
-	# FreeBSD
-	CC = clang
-else
-	#Linux and others...
-	CC	= gcc
-	LFLAGS += -lbsd
-endif
+MLX_INCLUDE = -Imlx_linux
 
 COLOUR_GREEN=\033[7;1;32m
 COLOUR_END=\033[0m
 COLOUR_YELLOW=\033[7;1;33m
 
+MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+
 # ^ primeira dependencia
 # @ nome da regra
-
 
 $(NAME): $(OBJS) | libft
 	@$(CC) $(^) -L$(LIBFT_LIB_DIR) -lft $(MLX_FLAGS) -o $(@)
