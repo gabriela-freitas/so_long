@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 20:53:50 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/21 14:58:29 by gafreita         ###   ########.fr       */
+/*   Created: 2022/07/19 17:26:53 by gafreita          #+#    #+#             */
+/*   Updated: 2022/07/20 21:17:01 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+t_so_long	*infos(void)
 {
-	void	*mlx;
-	void	*win_mlx;
+	static t_so_long	infos;
 
-	//check if the file is .ber
-	if (argc == 2)
-		parse_map(argv[1]);
-	// mlx = mlx_init();
-	// win_mlx = mlx_new_window(mlx, 500, 500, "testing");
-	// mlx_loop(mlx);
+	return (&infos);
+}
+
+void	exit_message(char *error)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(error, 2);
+	ft_putstr_fd("\n", 2);
+	//free memory
+	exit(EXIT_FAILURE);
 }
