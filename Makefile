@@ -6,7 +6,7 @@
 #    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2022/07/20 21:10:10 by gafreita         ###   ########.fr        #
+#    Updated: 2022/07/21 20:25:02 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,5 +65,9 @@ fclean: clean
 	@echo "$(COLOUR_YELLOW) SO_LONG CLEANED $(COLOUR_END)"
 
 re: fclean all
+
+test: all
+	@echo "Executing so_long"
+	@./$(NAME) map.ber
 
 .PHONY: all clean fclean re libft submodule
