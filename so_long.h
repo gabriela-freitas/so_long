@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:54:16 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/25 19:41:25 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:01:00 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	int		move;
 }	t_player;
-
 typedef struct s_so_long
 {
 	char		**map;
@@ -34,9 +32,15 @@ typedef struct s_so_long
 	int			height;
 	void		*mlx;
 	void		*win_mlx;
-	int			keys[255];
-	t_player	player;
+	int			pec[3];
 }	t_so_long;
+
+typedef struct s_game
+{
+	t_player	player;
+	int			collects;
+	int			steps;
+}	t_game;
 
 typedef struct s_images
 {
@@ -46,7 +50,6 @@ typedef struct s_images
 	void	*player;
 	void	*wall;
 }	t_images;
-
 
 enum e_keys{
 	key_W = 119,
@@ -58,9 +61,12 @@ enum e_keys{
 
 t_so_long	*infos(void);
 t_images	*img(void);
+t_game		*game(void);
 void		exit_message(char *error);
 void		parse_map(char *file_name);
 void		game_over(char *message);
 int			move_player(int keycode);
+void		print_collectables(void);
+void		save_collectables(void);
 
 #endif

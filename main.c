@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:53:50 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/25 19:49:24 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:01:09 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,22 @@ void	print_map(int i, int j);
 int	key_code(int keycode, void *param)
 {
 	(t_so_long *)param;
-	ft_printf("key: %d\n", keycode);
 	if (keycode == key_ESC)
 	{
 		mlx_destroy_window(infos()->mlx, infos()->win_mlx);
 		game_over("Thank you for playing");
 	}
-	move_player(keycode);
+	if (move_player(keycode))
+		ft_printf("steps: %d\n", ++game()->steps);
 	return (1);
 }
 
 int	print_player(void *param)
 {
 	print_map(-1, -1);
-	// if (infos()->player.move)
-	// {
-	// 	infos()->player.move = 0;
-		mlx_put_image_to_window(infos()->mlx, infos()->win_mlx,
-			img()->player, infos()->player.x * PX, infos()->player.y * PX);
-	// }
+	//print_collectables();
+	mlx_put_image_to_window(infos()->mlx, infos()->win_mlx,
+		img()->player, game()->player.x * PX, game()->player.y * PX);
 }
 
 int	main(int argc, char **argv)
@@ -77,7 +74,8 @@ void	open_images(void)
 			"./images/player.xpm", &img_width, &img_height);
 	(img()->wall) = mlx_xpm_file_to_image(infos()->mlx,
 			"./images/wall.xpm", &img_width, &img_height);
-	infos()->player.move = 1;
+	game()->steps = 0;
+	game()->collects = 0;
 }
 
 void	print_map(int i, int j)
@@ -90,6 +88,12 @@ void	print_map(int i, int j)
 			if (infos()->map[i][j] == '1')
 				mlx_put_image_to_window(infos()->mlx,
 					infos()->win_mlx, img()->wall, PX * j, PX * i);
+			else if (infos()->map[i][j] == 'E')
+				mlx_put_image_to_window(infos()->mlx,
+					infos()->win_mlx, img()->exit, PX * j, PX * i);
+			else if (infos()->map[i][j] == 'C')
+				mlx_put_image_to_window(infos()->mlx,
+					infos()->win_mlx, img()->collect, PX * j, PX * i);
 			else
 				mlx_put_image_to_window(infos()->mlx,
 					infos()->win_mlx, img()->empty, PX * j, PX * i);

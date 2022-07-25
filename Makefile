@@ -6,7 +6,7 @@
 #    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2022/07/25 18:58:58 by gafreita         ###   ########.fr        #
+#    Updated: 2022/07/25 22:56:45 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ NAME = so_long
 SRCS =	main.c \
 		map_checker.c \
 		utils.c \
-		move.c
-
+		move.c 
 OBJS = $(SRCS:%.c=%.o)
 
 CCFLAGS = gcc -Wall -Wextra -Werror -g

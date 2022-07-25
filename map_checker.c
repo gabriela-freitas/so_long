@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:06:04 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/25 18:56:41 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:17:09 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ And saves the map*/
 void	parse_map(char *file_name)
 {
 	int		fd;
+	int		i;
 
+	i = -1;
+	while (++i < 3)
+		infos()->pec[i] = 0;
 	if (ft_strncmp(ft_strrchr(file_name, '.'), ".ber\0", 6))
 		exit_message("Invalid file name");
 	fd = open(file_name, O_RDONLY);
@@ -55,10 +59,6 @@ Is surrounded by borders
 Has only the following: C, E, P, 0, 1*/
 static void	check_map(char *line, int i, int j)
 {
-	static int	p = 0;
-	static int	e = 0;
-	static int	c = 0;
-
 	if (line == NULL)
 		return ;
 	if (infos()->map[i + 1] == NULL)
@@ -73,15 +73,15 @@ static void	check_map(char *line, int i, int j)
 		if ((i == 0 || i == infos()->height - 1
 				|| j == 0 || j == infos()->width - 2) && line[j] != '1')
 			exit_message("Invalid map >> no border");
-		p += (line[j] == 'P');
-		e += (line[j] == 'E');
-		c += (line[j] == 'C');
-		if (p == 1 && line[j] == 'P')
+		infos()->pec[0] += (line[j] == 'P');
+		infos()->pec[1] += (line[j] == 'E');
+		infos()->pec[2] += (line[j] == 'C');
+		if (infos()->pec[0] == 1 && line[j] == 'P')
 		{
-			infos()->player.x = j;
-			infos()->player.y = i;
+			game()->player.x = i;
+			game()->player.y = j;
 		}
 	}
-	if ((!p || !e || !c) && i == 0)
+	if ((!infos()->pec[0] || !infos()->pec[1] || !infos()->pec[2]) && i == 0)
 		exit_message("Invalid map >> Missing character(s)");
 }

@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:26:53 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/25 18:49:12 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/25 21:55:15 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ t_images	*img(void)
 	static t_images	img;
 
 	return (&img);
+}
+
+t_game	*game(void)
+{
+	static t_game	game;
+
+	return (&game);
 }
 
 void	exit_message(char *error)
