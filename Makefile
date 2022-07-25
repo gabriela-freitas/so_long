@@ -6,7 +6,7 @@
 #    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2022/07/21 20:25:02 by gafreita         ###   ########.fr        #
+#    Updated: 2022/07/25 18:58:58 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@
 NAME = so_long
 SRCS =	main.c \
 		map_checker.c \
-		utils.c
+		utils.c \
+		move.c
 
 OBJS = $(SRCS:%.c=%.o)
 

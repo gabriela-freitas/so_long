@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:53:50 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/22 16:10:59 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:49:24 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,25 @@ void	print_map(int i, int j);
 int	key_code(int keycode, void *param)
 {
 	(t_so_long *)param;
-
 	ft_printf("key: %d\n", keycode);
+	if (keycode == key_ESC)
+	{
+		mlx_destroy_window(infos()->mlx, infos()->win_mlx);
+		game_over("Thank you for playing");
+	}
+	move_player(keycode);
 	return (1);
+}
+
+int	print_player(void *param)
+{
+	print_map(-1, -1);
+	// if (infos()->player.move)
+	// {
+	// 	infos()->player.move = 0;
+		mlx_put_image_to_window(infos()->mlx, infos()->win_mlx,
+			img()->player, infos()->player.x * PX, infos()->player.y * PX);
+	// }
 }
 
 int	main(int argc, char **argv)
@@ -33,11 +49,11 @@ int	main(int argc, char **argv)
 	{
 		parse_map(argv[1]);
 		infos()->mlx = mlx_init();
-		(infos()->win_mlx) = mlx_new_window(infos()->mlx, 64 * infos()->width,
-				64 * infos()->height, "so_long");
+		(infos()->win_mlx) = mlx_new_window(infos()->mlx,
+				PX * (infos()->width - 1), PX * infos()->height, "so_long");
 		mlx_hook(infos()->win_mlx, 2, 1L << 0, key_code, infos());
 		open_images();
-		print_map(-1, -1);
+		mlx_loop_hook(infos()->mlx, print_player, (void *)infos());
 		mlx_loop(infos()->mlx);
 	}
 	else
@@ -49,10 +65,10 @@ void	open_images(void)
 	int	img_width;
 	int	img_height;
 
-	img_height = PIXEL;
-	img_width = PIXEL;
+	img_height = PX;
+	img_width = PX;
 	(img()->collect) = mlx_xpm_file_to_image(infos()->mlx,
-			"./images/collect.xpm", &img_width, &img_height);
+			"./images/collectable.xpm", &img_width, &img_height);
 	(img()->empty) = mlx_xpm_file_to_image(infos()->mlx,
 			"./images/empty.xpm", &img_width, &img_height);
 	(img()->exit) = mlx_xpm_file_to_image(infos()->mlx,
@@ -61,29 +77,22 @@ void	open_images(void)
 			"./images/player.xpm", &img_width, &img_height);
 	(img()->wall) = mlx_xpm_file_to_image(infos()->mlx,
 			"./images/wall.xpm", &img_width, &img_height);
+	infos()->player.move = 1;
 }
 
 void	print_map(int i, int j)
 {
-	void	*image;
-
 	while (++i < infos()->height)
 	{
 		j = -1;
 		while (++j < (infos()->width - 1))
 		{
-			if (infos()->map[i][j] == 'C')
-				image = img()->collect;
-			if (infos()->map[i][j] == 'E')
-				image = img()->exit;
-			if (infos()->map[i][j] == 'P')
-				image = img()->player;
 			if (infos()->map[i][j] == '1')
-				image = img()->wall;
-			if (infos()->map[i][j] == '0')
-				image = img()->empty;
-			mlx_put_image_to_window(infos()->mlx, infos()->win_mlx, image, PIXEL * j, PIXEL * i);
+				mlx_put_image_to_window(infos()->mlx,
+					infos()->win_mlx, img()->wall, PX * j, PX * i);
+			else
+				mlx_put_image_to_window(infos()->mlx,
+					infos()->win_mlx, img()->empty, PX * j, PX * i);
 		}
-		printf("\n");
 	}
 }

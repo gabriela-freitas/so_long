@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:26:53 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/22 14:58:56 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:49:12 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,12 @@ void	exit_message(char *error)
 	ft_putstr_fd("\n", 2);
 	//free memory
 	exit(EXIT_FAILURE);
+}
+
+void	game_over(char *message)
+{
+	ft_putstr_fd(message, 1);
+	ft_putstr_fd("\n", 1);
+	//free_memory
+	exit(EXIT_SUCCESS);
 }

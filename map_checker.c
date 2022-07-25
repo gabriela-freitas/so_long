@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:06:04 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/21 15:22:07 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:56:41 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ static void	check_map(char *line, int i, int j)
 		p += (line[j] == 'P');
 		e += (line[j] == 'E');
 		c += (line[j] == 'C');
+		if (p == 1 && line[j] == 'P')
+		{
+			infos()->player.x = j;
+			infos()->player.y = i;
+		}
 	}
 	if ((!p || !e || !c) && i == 0)
 		exit_message("Invalid map >> Missing character(s)");
