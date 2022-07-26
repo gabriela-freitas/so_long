@@ -6,16 +6,16 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:53:50 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 23:02:58 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:37:01 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	open_images(void);
-void	print_map(int i, int j);
-
-int	key_code(int keycode)
+/*It' triggered when the users presses a key
+	Deals with movements (W, S, D, A)
+	and closing the window when ESC is pressed*/
+static int	key_code(int keycode)
 {
 	if (keycode == key_ESC)
 		game_over("Thank you for playing");
@@ -24,7 +24,10 @@ int	key_code(int keycode)
 	return (1);
 }
 
-int	print_player(void)
+/*It's executed all the time
+printing the updated positions of the player,
+the collectables and the steps*/
+static int	print_player(void)
 {
 	char	*str;
 	char	*steps;
@@ -40,7 +43,8 @@ int	print_player(void)
 	return (1);
 }
 
-int	close_win(void)
+/*It's triggered when the user clicks on the window's exit button*/
+static int	close_win(void)
 {
 	mlx_destroy_window(infos()->mlx, infos()->win_mlx);
 	game_over("Thank you for playing");

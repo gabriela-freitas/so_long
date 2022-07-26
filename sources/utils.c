@@ -6,12 +6,13 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:26:53 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 23:06:41 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:43:02 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*free all the memory allocated as soon as the window is openned*/
 void	free_so_long(void)
 {
 	free_split(infos()->map);
@@ -31,6 +32,7 @@ void	free_so_long(void)
 	free(infos()->mlx);
 }
 
+/*The Error message when something is wrong with the map*/
 void	exit_message(char *error)
 {
 	ft_putstr_fd("Error\n", 2);
@@ -40,6 +42,8 @@ void	exit_message(char *error)
 	exit(EXIT_FAILURE);
 }
 
+/*The message when the game is over,
+	whether the player won, lost or just quited the game*/
 void	game_over(char *message)
 {
 	mlx_destroy_window(infos()->mlx, infos()->win_mlx);

@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:06:04 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 23:30:07 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:35:57 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	check_map(char *line, int i, int j);
 static void	fill_map(int fd, int i);
 
+/*open the sprite images that will be printed on the window*/
 void	open_images(void)
 {
 	int	img_width;
@@ -38,6 +39,8 @@ void	open_images(void)
 	game()->collects = 0;
 }
 
+/*prints the map, except the player, while iterating through
+	the map matrix*/
 void	print_map(int i, int j)
 {
 	while (++i < infos()->height)

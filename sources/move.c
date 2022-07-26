@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:42:47 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 21:35:11 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:39:22 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	animate_player(int keycode);
 static void	collisions(void);
 
+/*checks what key have been pressed and the updates the player location*/
 int	move_player(int keycode)
 {
 	int	x;
@@ -37,6 +38,7 @@ int	move_player(int keycode)
 	return (1);
 }
 
+/*open the player's sprite for animation*/
 void	open_players(void)
 {
 	int	img_width;
@@ -62,6 +64,7 @@ void	open_players(void)
 			"./images/player_W_1.xpm", &img_height, &img_width);
 }
 
+/*changes what player image will be printed on the screen at that time*/
 static void	animate_player(int keycode)
 {
 	static int	i = 0;
@@ -77,6 +80,9 @@ static void	animate_player(int keycode)
 		img()->player = img()->play_mv.player_d[i];
 }
 
+/*Deals with collisions with the collectables,
+enemies (ending the game) and
+exit (declaring a win when the player have all the collectables)*/
 static void	collisions(void)
 {
 	int	x;
