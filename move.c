@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:42:47 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 20:18:56 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:18:34 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,28 @@ int	move_player(int keycode)
 
 void	open_players(void)
 {
-	static int	size[2] = {PX, PX};
+	int	img_width;
+	int	img_height;
 
-	(img()->play_mv.player_a[0]) = mlx_xpm_file_to_image(infos()->map,
-			"./player_A_0", &size[0], &size[1]);
-	(img()->play_mv.player_a[1]) = mlx_xpm_file_to_image(infos()->map,
-			"./player_A_1", &size[0], &size[1]);
-	(img()->play_mv.player_d[0]) = mlx_xpm_file_to_image(infos()->map,
-			"./player_D_0", &size[0], &size[1]);
-	(img()->play_mv.player_d[1]) = mlx_xpm_file_to_image(infos()->map,
-			"./player_D_1", &size[0], &size[1]);
-	(img()->play_mv.player_s[0]) = mlx_xpm_file_to_image(infos()->map,
-			"./player_S_0", &size[0], &size[1]);
-	(img()->play_mv.player_s[1]) = mlx_xpm_file_to_image(infos()->map,
-			"./player_S_1", &size[0], &size[1]);
-	(img()->play_mv.player_w[0]) = mlx_xpm_file_to_image(infos()->map,
-			"./player_W_0", &size[0], &size[1]);
-	(img()->play_mv.player_w[1]) = mlx_xpm_file_to_image(infos()->map,
-			"./player_W_1", &size[0], &size[1]);
+	img_height = PX;
+	img_width = PX;
+
+	(img()->play_mv.player_a[0]) = mlx_xpm_file_to_image(infos()->mlx,
+			"./images/player_A_0.xpm", &img_height, &img_width);
+	(img()->play_mv.player_a[1]) = mlx_xpm_file_to_image(infos()->mlx,
+			"./images/player_A_1.xpm", &img_height, &img_width);
+	(img()->play_mv.player_d[0]) = mlx_xpm_file_to_image(infos()->mlx,
+			"./images/player_D_0.xpm", &img_height, &img_width);
+	(img()->play_mv.player_d[1]) = mlx_xpm_file_to_image(infos()->mlx,
+			"./images/player_D_1.xpm", &img_height, &img_width);
+	(img()->play_mv.player_s[0]) = mlx_xpm_file_to_image(infos()->mlx,
+			"./images/player_S_0.xpm", &img_height, &img_width);
+	(img()->play_mv.player_s[1]) = mlx_xpm_file_to_image(infos()->mlx,
+			"./images/player_S_1.xpm", &img_height, &img_width);
+	(img()->play_mv.player_w[0]) = mlx_xpm_file_to_image(infos()->mlx,
+			"./images/player_W_0.xpm", &img_height, &img_width);
+	(img()->play_mv.player_w[1]) = mlx_xpm_file_to_image(infos()->mlx,
+			"./images/player_W_1.xpm", &img_height, &img_width);
 }
 
 static void	animate_player(int keycode)
@@ -65,13 +69,13 @@ static void	animate_player(int keycode)
 	static int	i = 0;
 
 	i = !i;
-	if (keycode == 'W')
+	if (keycode == key_W)
 		img()->player = img()->play_mv.player_w[i];
-	if (keycode == 'S')
+	if (keycode == key_S)
 		img()->player = img()->play_mv.player_s[i];
-	if (keycode == 'A')
+	if (keycode == key_A)
 		img()->player = img()->play_mv.player_a[i];
-	if (keycode == 'D')
+	if (keycode == key_D)
 		img()->player = img()->play_mv.player_d[i];
 }
 

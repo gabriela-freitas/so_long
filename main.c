@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:53:50 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 20:11:08 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:22:53 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	open_images(void)
 	(img()->exit) = mlx_xpm_file_to_image(infos()->mlx,
 			"./images/exit.xpm", &img_width, &img_height);
 	open_players();
+	img()->player = img()->play_mv.player_d[0];
 	(img()->wall) = mlx_xpm_file_to_image(infos()->mlx,
 			"./images/wall.xpm", &img_width, &img_height);
 	(img()->enemy) = mlx_xpm_file_to_image(infos()->mlx,
