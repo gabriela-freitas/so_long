@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:54:16 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 21:16:10 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:36:48 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ int			move_player(int keycode);
 void		print_collectables(void);
 void		save_collectables(void);
 void		open_players(void);
+void		open_images(void);
+void		print_map(int i, int j);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:42:47 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 21:18:34 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:35:11 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	move_player(int keycode)
 	return (1);
 }
 
-
 void	open_players(void)
 {
 	int	img_width;
@@ -45,7 +44,6 @@ void	open_players(void)
 
 	img_height = PX;
 	img_width = PX;
-
 	(img()->play_mv.player_a[0]) = mlx_xpm_file_to_image(infos()->mlx,
 			"./images/player_A_0.xpm", &img_height, &img_width);
 	(img()->play_mv.player_a[1]) = mlx_xpm_file_to_image(infos()->mlx,

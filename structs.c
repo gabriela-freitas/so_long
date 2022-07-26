@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   structs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 17:26:53 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 21:31:42 by gafreita         ###   ########.fr       */
+/*   Created: 2022/07/26 21:27:05 by gafreita          #+#    #+#             */
+/*   Updated: 2022/07/26 21:28:37 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_so_long(void)
+t_so_long	*infos(void)
 {
-	free_split(infos()->map);
+	static t_so_long	infos;
+
+	return (&infos);
 }
 
-void	exit_message(char *error)
+t_images	*img(void)
 {
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(error, 2);
-	ft_putstr_fd("\n", 2);
-	free_split(infos()->map);
-	exit(EXIT_FAILURE);
+	static t_images	img;
+
+	return (&img);
 }
 
-void	game_over(char *message)
+t_game	*game(void)
 {
-	ft_putstr_fd(message, 1);
-	ft_putstr_fd("\n", 1);
-	exit(EXIT_SUCCESS);
+	static t_game	game;
+
+	return (&game);
 }
