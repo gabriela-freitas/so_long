@@ -6,18 +6,18 @@
 #    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2022/07/26 23:18:55 by gafreita         ###   ########.fr        #
+#    Updated: 2022/07/26 23:26:07 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #+++++++++ WORKS ON LINUX +++++++++++++ #
 
 NAME = so_long
-SRCS =	main.c \
-		map_checker.c \
-		utils.c \
-		move.c  \
-		structs.c
+SRCS =	sources/main.c \
+		sources/map_checker.c \
+		sources/utils.c \
+		sources/move.c  \
+		sources/structs.c
 OBJS = $(SRCS:%.c=%.o)
 OBJS_PATH = objs/
 
@@ -26,7 +26,7 @@ CCFLAGS = gcc -Wall -Wextra -Werror -g
 LIBFT_LIB_DIR = LIBFT/
 MLX_LIB_DIR = mlx_linux/
 #directories with .h
-LIBFT_INCLUDE = -ILIBFT/include
+LIBFT_INCLUDE = -ILIBFT/include -I.
 MLX_INCLUDE = -Imlx_linux
 
 COLOUR_GREEN=\033[7;1;32m
@@ -40,7 +40,7 @@ MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 
 $(NAME): $(OBJS) | libft  mlx
 	@mkdir -p objs
-	@$(CC) $(^) -L$(LIBFT_LIB_DIR) -lft $(MLX_FLAGS) -o $(@)
+	@$(CCFLAGS) $(^) -L$(LIBFT_LIB_DIR) -lft $(MLX_FLAGS) -o $(@)
 	@mv $(OBJS) objs/
 	@echo "$(COLOUR_YELLOW) >>> OBJECTS DIRECTORY CREATED <<< $(COLOUR_END)"
 	@echo "$(COLOUR_GREEN) >>> SO_LONG OK <<< $(COLOUR_END)"
@@ -51,7 +51,7 @@ submodule:
 all: $(NAME) submodule
 
 %.o: %.c
-	@$(CC) $(LIBFT_INCLUDE) $(MLX_INCLUDE) -c $(^) -o $(@)
+	@$(CCFLAGS) $(LIBFT_INCLUDE) $(MLX_INCLUDE) -c $(^) -o $(@)
 
 mlx:
 	@make -s -C $(MLX_LIB_DIR)

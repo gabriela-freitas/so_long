@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:06:04 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 23:03:26 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:30:07 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	parse_map(char *file_name)
 	i = -1;
 	while (++i < 3)
 		infos()->pec[i] = 0;
-	if (ft_strncmp(ft_strrchr(file_name, '.'), ".ber\0", 6))
+	if (!ft_strrchr(file_name, '.')
+		|| ft_strncmp(ft_strrchr(file_name, '.'), ".ber\0", 6))
 		exit_message("Invalid file name");
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
