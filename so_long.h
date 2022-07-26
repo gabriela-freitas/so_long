@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:54:16 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/25 23:01:00 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 20:12:27 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,23 @@ typedef struct s_game
 	int			steps;
 }	t_game;
 
+typedef struct s_player_mv
+{
+	void	*player_w[2];
+	void	*player_s[2];
+	void	*player_a[2];
+	void	*player_d[2];
+}	t_player_mv;
+
 typedef struct s_images
 {
-	void	*collect;
-	void	*empty;
-	void	*exit;
-	void	*player;
-	void	*wall;
+	void		*collect;
+	void		*empty;
+	void		*exit;
+	t_player_mv	play_mv;
+	void		*player;
+	void		*wall;
+	void		*enemy;
 }	t_images;
 
 enum e_keys{
@@ -68,5 +78,6 @@ void		game_over(char *message);
 int			move_player(int keycode);
 void		print_collectables(void);
 void		save_collectables(void);
+void		open_players(void);
 
 #endif

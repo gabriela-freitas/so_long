@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:06:04 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/25 22:17:09 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:31:12 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	check_map(char *line, int i, int j)
 	while (line[++j] != '\n' && line)
 	{
 		if (!(line[j] == '1' || line[j] == '0' || line[j] == 'P'
-				|| line[j] == 'C' || line[j] == 'E'))
+				|| line[j] == 'C' || line[j] == 'E' || line[j] == 'N'))
 			exit_message("Invalid map >> invalid character");
 		if ((i == 0 || i == infos()->height - 1
 				|| j == 0 || j == infos()->width - 2) && line[j] != '1')

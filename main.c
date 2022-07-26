@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:53:50 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/25 23:29:46 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/26 20:11:08 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	key_code(int keycode, void *param)
 
 int	print_player(void *param)
 {
-	char *str;
+	char	*str;
 
 	print_map(-1, -1);
 	mlx_put_image_to_window(infos()->mlx, infos()->win_mlx,
@@ -83,10 +83,11 @@ void	open_images(void)
 			"./images/empty.xpm", &img_width, &img_height);
 	(img()->exit) = mlx_xpm_file_to_image(infos()->mlx,
 			"./images/exit.xpm", &img_width, &img_height);
-	(img()->player) = mlx_xpm_file_to_image(infos()->mlx,
-			"./images/player.xpm", &img_width, &img_height);
+	open_players();
 	(img()->wall) = mlx_xpm_file_to_image(infos()->mlx,
 			"./images/wall.xpm", &img_width, &img_height);
+	(img()->enemy) = mlx_xpm_file_to_image(infos()->mlx,
+			"./images/enemy.xpm", &img_width, &img_height);
 	game()->steps = 0;
 	game()->collects = 0;
 }
@@ -107,6 +108,9 @@ void	print_map(int i, int j)
 			else if (infos()->map[i][j] == 'C')
 				mlx_put_image_to_window(infos()->mlx,
 					infos()->win_mlx, img()->collect, PX * j, PX * i);
+			else if (infos()->map[i][j] == 'N')
+				mlx_put_image_to_window(infos()->mlx,
+					infos()->win_mlx, img()->enemy, PX * j, PX * i);
 			else
 				mlx_put_image_to_window(infos()->mlx,
 					infos()->win_mlx, img()->empty, PX * j, PX * i);
