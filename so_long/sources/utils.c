@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:26:53 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 23:43:02 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:42:18 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	free_so_long(void)
 	mlx_destroy_image(infos()->mlx, img()->play_mv.player_w[1]);
 	mlx_destroy_image(infos()->mlx, img()->play_mv.player_d[0]);
 	mlx_destroy_image(infos()->mlx, img()->play_mv.player_d[1]);
+	mlx_destroy_display(infos()->mlx);
 	free(infos()->mlx);
 }
 

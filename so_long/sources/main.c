@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:53:50 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 23:37:01 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:42:36 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static int	print_player(void)
 /*It's triggered when the user clicks on the window's exit button*/
 static int	close_win(void)
 {
-	mlx_destroy_window(infos()->mlx, infos()->win_mlx);
 	game_over("Thank you for playing");
 	return (1);
 }
