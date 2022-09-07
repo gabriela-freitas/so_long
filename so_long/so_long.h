@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:54:16 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/27 18:23:57 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/09/07 14:38:09 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 # define PX 32
-
 
 typedef struct s_player
 {
@@ -70,9 +69,18 @@ enum e_keys{
 	key_ESC = 65307
 };
 
+enum e_events
+{
+	KEY_PRESS = 2,
+	KeyPressMask = 1L << 0,
+	DESTROY_NOTIFY = 17,
+	ButtonPressMask = 1L << 2
+};
+
 t_so_long	*infos(void);
 t_images	*img(void);
 t_game		*game(void);
+void		init_variables(void);
 void		exit_message(char *error);
 void		parse_map(char *file_name);
 void		game_over(char *message);

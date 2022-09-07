@@ -6,11 +6,23 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 21:27:05 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 23:40:44 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/09/07 14:27:48 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*initializes variables to 0*/
+void	init_variables(void)
+{
+	int		i;
+
+	i = -1;
+	while (++i < 3)
+		infos()->pec[i] = 0;
+	game()->steps = 0;
+	game()->collects = 0;
+}
 
 /*contains information about the mlx pointers and windows*/
 t_so_long	*infos(void)

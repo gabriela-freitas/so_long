@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daalmeid <daalmeid@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2022/07/27 18:41:00 by gafreita         ###   ########.fr        #
+#    Updated: 2022/09/07 14:20:11 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,11 @@ DEPS	= ../LIBFT/libft.a ../mlx_linux/libmlx.a
 
 
 CCFLAGS = gcc -Wall -Wextra -Werror -g
+
 #directories with .a
 LIBFT_LIB_DIR = ../LIBFT/
 MLX_LIB_DIR = ../mlx_linux/
+
 #directories with .h
 LIBFT_INCLUDE = -I ../LIBFT/include -I .
 MLX_INCLUDE = -I ../mlx_linux

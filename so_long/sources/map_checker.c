@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:06:04 by gafreita          #+#    #+#             */
-/*   Updated: 2022/07/26 23:35:57 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/09/07 14:29:26 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	open_images(void)
 			"./images/wall.xpm", &img_width, &img_height);
 	(img()->enemy) = mlx_xpm_file_to_image(infos()->mlx,
 			"./images/enemy.xpm", &img_width, &img_height);
-	game()->steps = 0;
-	game()->collects = 0;
 }
 
 /*prints the map, except the player, while iterating through
@@ -72,17 +70,14 @@ And saves the map*/
 void	parse_map(char *file_name)
 {
 	int		fd;
-	int		i;
 
-	i = -1;
-	while (++i < 3)
-		infos()->pec[i] = 0;
 	if (!ft_strrchr(file_name, '.')
 		|| ft_strncmp(ft_strrchr(file_name, '.'), ".ber\0", 6))
 		exit_message("Invalid file name");
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		exit_message("Map file not found");
+	init_variables();
 	fill_map(fd, 0);
 }
 
