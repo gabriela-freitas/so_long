@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:06:04 by gafreita          #+#    #+#             */
-/*   Updated: 2022/09/07 14:29:26 by gafreita         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:11:38 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ And saves the map*/
 void	parse_map(char *file_name)
 {
 	int		fd;
+	int		i;
 
 	if (!ft_strrchr(file_name, '.')
 		|| ft_strncmp(ft_strrchr(file_name, '.'), ".ber\0", 6))
@@ -79,6 +80,9 @@ void	parse_map(char *file_name)
 		exit_message("Map file not found");
 	init_variables();
 	fill_map(fd, 0);
+	i = -1;
+	while (++i <= infos()->height)
+		check_map(infos()->map[i], i, -1);
 }
 
 /*Read from the file and fill the map (char **) recursively*/
@@ -97,7 +101,6 @@ static void	fill_map(int fd, int i)
 			exit_message("Malloc error");
 	}
 	infos()->map[i] = line;
-	check_map(line, i, -1);
 }
 
 /*Check if is a valid map:
@@ -109,7 +112,7 @@ static void	check_map(char *line, int i, int j)
 {
 	if (line == NULL)
 		return ;
-	if (infos()->map[i + 1] == NULL)
+	if (i == 0)
 		infos()->width = ft_strlen(line);
 	else if (ft_strlen(line) != (size_t)infos()->width)
 		exit_message("Invalid map >> not a rectangule");
@@ -130,6 +133,6 @@ static void	check_map(char *line, int i, int j)
 			game()->player.y = j;
 		}
 	}
-	if ((!infos()->pec[0] || !infos()->pec[1] || !infos()->pec[2]) && i == 0)
+	if ((!infos()->pec[0] || !infos()->pec[1] || !infos()->pec[2]) && i == infos()->height - 1)
 		exit_message("Invalid map >> Missing character(s)");
 }
